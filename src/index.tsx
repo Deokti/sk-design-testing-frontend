@@ -6,18 +6,6 @@ import "@fontsource/open-sans";
 import "macro-css";
 import "./assets/styles/globals.scss";
 
-ReactDOM.render(
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-    }}
-  >
-    <App />
-  </div>,
-  document.getElementById("root"),
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 reportWebVitals();

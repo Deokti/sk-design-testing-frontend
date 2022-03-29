@@ -12,6 +12,7 @@ import { ApiService } from "../services/ApiService";
 import { City } from "../models/city.interface";
 import { SKDesign } from "../components/SkDesign";
 import { Container } from "../components/common/Container";
+import { Fixed } from "../components/common/Fixed";
 
 export const App = () => {
   const [additionally, onAdditionally] = useToogle(false);
@@ -42,107 +43,109 @@ export const App = () => {
   };
 
   return (
-    <Container className="d-flex justify-between align-center">
-      <SKDesign />
+    <Fixed className="d-flex justify-between align-center">
+      <Container className="d-flex justify-between align-center">
+        <SKDesign />
 
-      <Overlay>
-        <form onSubmit={formik.handleSubmit}>
-          <div className="d-flex flex-wrap justify-between">
+        <Overlay>
+          <form onSubmit={formik.handleSubmit}>
             <div className="d-flex flex-wrap justify-between">
-              <Input
-                placeholder="Иван"
-                title="Ваше имя *"
-                name="username"
-                value={formik.values.username}
-                error={formik.errors.username}
-                onChange={formik.handleChange}
-              />
-              <Input
-                placeholder="+7 (000) 000-00-00"
-                name="phone"
-                value={formik.values.phone}
-                error={formik.errors.phone}
-                title="Номер телефона *"
-                onChange={formik.handleChange}
-                type="phone"
-              />
-              <Input
-                placeholder="example@skdesign.ru"
-                title="E-mail *"
-                value={formik.values.email}
-                error={formik.errors.email}
-                onChange={formik.handleChange}
-                name="email"
-              />
-              <Input
-                placeholder="instagram.com/skde…"
-                title="Ссылка на профиль *"
-                value={formik.values.linkToProfile}
-                error={formik.errors.linkToProfile}
-                name="linkToProfile"
-                onChange={formik.handleChange}
-              />
-            </div>
-
-            <Dropdown
-              placeholder="Выберите город *"
-              open={isOpenCities}
-              name="city"
-              onSelect={handlerDropdownChange("city", onClose)}
-              onClose={onCloseSities}
-              onOpen={onOpenSities}
-              selectedValue={formik.values.city}
-              error={formik.errors.city}
-              options={cities}
-            />
-            <Input
-              placeholder="SK Design"
-              title="Название организации/студии"
-              name="organization"
-              value={formik.values.organization}
-              onChange={formik.handleChange}
-              fullWidth
-            />
-
-            <AdditionallyFields
-              title={"Показать дополнительные поля"}
-              open={additionally}
-              onOpen={onAdditionally}
-            >
-              <>
+              <div className="d-flex flex-wrap justify-between">
                 <Input
-                  placeholder="ФИО"
-                  title="Получатель"
-                  fullWidth
-                  value={formik.values.recipient}
+                  placeholder="Иван"
+                  title="Ваше имя *"
+                  name="username"
+                  value={formik.values.username}
+                  error={formik.errors.username}
                   onChange={formik.handleChange}
-                  name="recipient"
-                  className="mb-15"
                 />
-                <Dropdown
-                  placeholder="От куда узнали про нас?"
-                  open={isOpenAbount}
-                  options={sources}
-                  name="howDidYouKnow"
-                  onClose={onCloseAbount}
-                  onSelect={handlerDropdownChange("howDidYouKnow", onClose)}
-                  onOpen={onOpenAbount}
-                  selectedValue={formik.values.howDidYouKnow}
+                <Input
+                  placeholder="+7 (000) 000-00-00"
+                  name="phone"
+                  value={formik.values.phone}
+                  error={formik.errors.phone}
+                  title="Номер телефона *"
+                  onChange={formik.handleChange}
+                  type="phone"
                 />
-              </>
-            </AdditionallyFields>
+                <Input
+                  placeholder="example@skdesign.ru"
+                  title="E-mail *"
+                  value={formik.values.email}
+                  error={formik.errors.email}
+                  onChange={formik.handleChange}
+                  name="email"
+                />
+                <Input
+                  placeholder="instagram.com/skde…"
+                  title="Ссылка на профиль *"
+                  value={formik.values.linkToProfile}
+                  error={formik.errors.linkToProfile}
+                  name="linkToProfile"
+                  onChange={formik.handleChange}
+                />
+              </div>
 
-            <Button
-              fullWidth
-              type="submit"
-              disabled={!(formik.isValid && formik.dirty) || isLoading}
-              isLoading={isLoading}
-            >
-              Отправить заявку
-            </Button>
-          </div>
-        </form>
-      </Overlay>
-    </Container>
+              <Dropdown
+                placeholder="Выберите город *"
+                open={isOpenCities}
+                name="city"
+                onSelect={handlerDropdownChange("city", onClose)}
+                onClose={onCloseSities}
+                onOpen={onOpenSities}
+                selectedValue={formik.values.city}
+                error={formik.errors.city}
+                options={cities}
+              />
+              <Input
+                placeholder="SK Design"
+                title="Название организации/студии"
+                name="organization"
+                value={formik.values.organization}
+                onChange={formik.handleChange}
+                fullWidth
+              />
+
+              <AdditionallyFields
+                title={"Показать дополнительные поля"}
+                open={additionally}
+                onOpen={onAdditionally}
+              >
+                <>
+                  <Input
+                    placeholder="ФИО"
+                    title="Получатель"
+                    fullWidth
+                    value={formik.values.recipient}
+                    onChange={formik.handleChange}
+                    name="recipient"
+                    className="mb-15"
+                  />
+                  <Dropdown
+                    placeholder="От куда узнали про нас?"
+                    open={isOpenAbount}
+                    options={sources}
+                    name="howDidYouKnow"
+                    onClose={onCloseAbount}
+                    onSelect={handlerDropdownChange("howDidYouKnow", onClose)}
+                    onOpen={onOpenAbount}
+                    selectedValue={formik.values.howDidYouKnow}
+                  />
+                </>
+              </AdditionallyFields>
+
+              <Button
+                fullWidth
+                type="submit"
+                disabled={!(formik.isValid && formik.dirty) || isLoading}
+                isLoading={isLoading}
+              >
+                Отправить заявку
+              </Button>
+            </div>
+          </form>
+        </Overlay>
+      </Container>
+    </Fixed>
   );
 };
