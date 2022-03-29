@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AdditionallyFields } from "../components/AdditionallyFields";
 import { Button } from "../components/Button";
 import { Dropdown } from "../components/Dropdown";
@@ -20,10 +20,21 @@ export const App = () => {
   const { formik, handlerDropdownChange } = useValidateFormik({ onSubmit });
   const { data: cities } = useFetch<City[]>(ApiService.get("/cities.json"));
   const { data: sources } = useFetch<string[]>(ApiService.get("/sources.json"));
+  const [isLoading, setLoading] = useState(false);
 
   function onSubmit(values: FormikFields) {
-    console.log(values);
+    post(values);
   }
+
+  const post = async (values: FormikFields) => {
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      console.log(JSON.stringify(values));
+      setLoading(false);
+      clearTimeout(timeout);
+      formik.resetForm();
+    }, 2000);
+  };
 
   const onClose = () => {
     onCloseSities();
@@ -124,7 +135,8 @@ export const App = () => {
             <Button
               fullWidth
               type="submit"
-              disabled={!(formik.isValid && formik.dirty)}
+              disabled={!(formik.isValid && formik.dirty) || isLoading}
+              isLoading={isLoading}
             >
               Отправить заявку
             </Button>

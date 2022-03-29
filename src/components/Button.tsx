@@ -21,7 +21,8 @@ const ButtonStyled = styled.button<ButtonProps>`
   border-radius: 8px;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
 
-  transition: background 0.2s linear;
+  transition: ${({ isLoading }) =>
+    isLoading ? "0" : "background 0.2s linear"};
 
   &:hover {
     background: #007693;
