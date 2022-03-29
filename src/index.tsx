@@ -7,18 +7,16 @@ import "macro-css";
 import "./assets/styles/globals.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <App />
-    </div>
-  </React.StrictMode>,
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+    }}
+  >
+    <App />
+  </div>,
   document.getElementById("root"),
 );
 
