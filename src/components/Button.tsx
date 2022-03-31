@@ -45,9 +45,8 @@ const ButtonStyled = styled.button<ButtonProps>`
 `;
 
 const Loader = styled.img`
-  max-width: 30px;
-  width: 100%;
-  height: 100%;
+  width: 30px;
+  height: 30px;
 `;
 
 export const Button = (props: ButtonProps): ReactElement => {

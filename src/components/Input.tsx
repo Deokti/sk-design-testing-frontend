@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import InputMask from "react-input-mask";
 
@@ -16,15 +16,25 @@ type TSpan = Pick<InputProps, "title">;
 
 const InputCssStyled = css`
   width: 100%;
-  height: 50px;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   color: #353238;
-
+  height: 42px;
+  margin-left: 2px;
+  width: 98%;
+  margin-top: 5px;
+  border-radius: 8px;
   border: none;
   background-color: transparent;
   padding: 0 15px;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
 
   &::placeholder {
     letter-spacing: 0.25px;
